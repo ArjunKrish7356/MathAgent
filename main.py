@@ -39,6 +39,7 @@ def log(a: float, base: float = 10.0) -> float:
     """
     import math
     
+    
     if a <= 0:
         raise ValueError("Logarithm input must be positive")
     if base <= 0 or base == 1:
