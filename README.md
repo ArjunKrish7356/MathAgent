@@ -17,7 +17,7 @@ This repository contains an MCP (Model Context Protocol) server for mathematical
 
 Clone the repository:
 ```bash
-git clone [<REPO_URL>](https://github.com/ArjunKrish7356/MathMCP.git)
+git clone https://github.com/ArjunKrish7356/MathMCP.git
 cd MathMCP
 ```
 
@@ -26,4 +26,5 @@ cd MathMCP
 ## Contributing
 
 Thank you for your interest! Contributions are welcome—feel free to open issues or submit pull requests.
+
 
