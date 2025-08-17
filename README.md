@@ -5,13 +5,13 @@ This repository contains an MCP (Model Context Protocol) server for mathematical
 ## Current Tools
 - add
 - subtract
-
-## Coming Soon
 - multiply
-- division
-- modulus
+- divide
 - power
 - log
+
+## Coming Soon
+- modulus
 
 ## Installation
 
