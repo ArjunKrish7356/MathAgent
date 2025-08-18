@@ -3,12 +3,12 @@ from fastmcp import FastMCP
 mcp = FastMCP("MathsTools")
 
 @mcp.tool
-def add(a: int, b: int) -> int:
+def add(a: float, b: float) -> float:
     """Adds two integer numbers together."""
     return a + b
 
 @mcp.tool
-def subtract(a: int, b: int) -> int:
+def subtract(a: float, b: float) -> float:
     """subtract two integer numbers together."""
     return a - b
 
