@@ -13,21 +13,39 @@ This repository contains an MCP (Model Context Protocol) server for mathematical
 ## Coming Soon
 - modulus
 
-## Installation
-
-Clone the repository:
-```bash
-git clone https://github.com/ArjunKrish7356/MathMCP.git
-cd MathMCP
-```
 ## Connecting with Pydantic AI
 
 Use the official Pydantic AI MCP client: https://ai.pydantic.dev/mcp/client/. This MCP server is compatible with the Stdio transport.
 
-Key points:
-- Run the server so it reads from stdin and writes to stdout (MCP messages on stdio).
-- Configure the Pydantic AI client to use the Stdio protocol; the client will spawn or attach to the server process and exchange MCP JSON messages over stdin/stdout.
-- Ensure the client and server agree on MCP framing and version (see official docs below) before integrating.
+1. Clone the repo into the working directory where your agent runs:
+```
+git clone https://github.com/ArjunKrish7356/MathMCP.git
+```
+
+2. Create an MCP server wrapper in your agent code (the `name` can be any unique id; `args` are the command used to start the server process):
+```python
+from pydantic_ai.mcp import MCPServerStdio
+
+mcp_server = MCPServerStdio(
+    name="math_mcp",
+    args=[
+        "run",
+        "MathAgent/main.py"
+    ]
+)
+```
+
+3. Register the MCP server with your Agent:
+```python
+from pydantic_ai import Agent
+
+agent = Agent(model="openai:gpt-4o", toolsets=[mcp_server])
+```
+
+Notes:
+- Ensure the `MathAgent/main.py` path is correct relative to where the agent runs and that the script is runnable.
+- The Stdio transport will spawn the configured process using the provided `args`; verify any required environment or dependencies are installed before launching.
+- Test the connection locally before deploying.
 
 ## More Resources
 - Official MCP documentation: https://modelcontextprotocol.io/docs/getting-started/intro  
