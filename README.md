@@ -19,7 +19,7 @@ Use the official Pydantic AI MCP client: https://ai.pydantic.dev/mcp/client/. Th
 
 1. Clone the repo into the working directory where your agent runs:
 ```
-git clone https://github.com/ArjunKrish7356/MathMCP.git
+git clone https://github.com/ArjunKrish7356/MathAgent.git
 ```
 
 2. Create an MCP server wrapper in your agent code (the `name` can be any unique id; `args` are the command used to start the server process):
