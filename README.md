@@ -27,7 +27,7 @@ git clone https://github.com/ArjunKrish7356/MathMCP.git
 from pydantic_ai.mcp import MCPServerStdio
 
 mcp_server = MCPServerStdio(
-    name="math_mcp",
+    'uv'
     args=[
         "run",
         "MathAgent/main.py"
