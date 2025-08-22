@@ -26,10 +26,6 @@ Coming soon:
 ## Setup
 1) Clone the repository
 2) Create your environment file
-	 - Copy the example file and fill in your secrets
-	 ```bash
-	 cp .env.example .env
-	 ```
 	 - Set these keys:
 		 - `groq_key` — your Groq API key
 		 - `logfire_key` — your Logfire token
@@ -48,6 +44,7 @@ Notes:
 
 ## Contributing
 Contributions are welcome—feel free to open issues or submit pull requests.
+
 
 
 
