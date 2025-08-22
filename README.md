@@ -1,8 +1,12 @@
-# Math MCP Server
+# MathAgent
 
-This repository contains an MCP (Model Context Protocol) server for mathematical calculations.
+A minimal math agent that delegates all calculations to an MCP (Model Context Protocol) server. The agent uses MCP tools for every operation—no mental math—so you get consistent, inspectable results.
 
-## Current Tools
+## What’s inside
+- Agent: built with pydantic-ai, connected via MCP stdio
+- MCP Server: powered by fastmcp, exposing math tools
+
+### Available MCP tools
 - add
 - subtract
 - multiply
@@ -10,50 +14,40 @@ This repository contains an MCP (Model Context Protocol) server for mathematical
 - power
 - log
 
-## Coming Soon
+Coming soon:
 - modulus
 
-## Connecting with Pydantic AI
+## Requirements
+- Python 3.13+
+- uv (Python package/dependency manager)
+- A Groq API key (for the LLM model)
+- A Logfire token (for instrumentation)
 
-Use the official Pydantic AI MCP client: https://ai.pydantic.dev/mcp/client/. This MCP server is compatible with the Stdio transport.
+## Setup
+1) Clone the repository
+2) Create your environment file
+	 - Copy the example file and fill in your secrets
+	 ```bash
+	 cp .env.example .env
+	 ```
+	 - Set these keys:
+		 - `groq_key` — your Groq API key
+		 - `logfire_key` — your Logfire token
 
-1. Clone the repo into the working directory where your agent runs:
-```
-git clone https://github.com/ArjunKrish7356/MathAgent.git
-```
+## Run the agent
+Run with uv so dependencies are resolved and the MCP server is launched as a toolset:
 
-2. Create an MCP server wrapper in your agent code (the `name` can be any unique id; `args` are the command used to start the server process):
-```python
-from pydantic_ai.mcp import MCPServerStdio
-
-mcp_server = MCPServerStdio(
-    'uv'
-    args=[
-        "run",
-        "MathAgent/main.py"
-    ]
-)
-```
-
-3. Register the MCP server with your Agent:
-```python
-from pydantic_ai import Agent
-
-agent = Agent(model="openai:gpt-4o", toolsets=[mcp_server])
+```bash
+uv run agent.py
 ```
 
 Notes:
-- Ensure the `MathAgent/main.py` path is correct relative to where the agent runs and that the script is runnable.
-- The Stdio transport will spawn the configured process using the provided `args`; verify any required environment or dependencies are installed before launching.
-- Test the connection locally before deploying.
-
-## More Resources
-- Official MCP documentation: https://modelcontextprotocol.io/docs/getting-started/intro  
-- Introductory video on MCP: https://www.youtube.com/watch?v=N3vHJcHBS-w
+- The agent is configured to use the Groq model `qwen/qwen3-32b` (see `agent.py`). You can swap models as needed.
+- The agent will reject non-math questions by design.
+- All calculations route through the MCP tools defined in `mcp-server.py`.
 
 ## Contributing
-
-Thank you for your interest! Contributions are welcome—feel free to open issues or submit pull requests.
+Contributions are welcome—feel free to open issues or submit pull requests.
 
 
 
